@@ -1,0 +1,93 @@
+.menuOpened{
+  background-color:#21252B;
+  border-radius: 10px;
+  position: absolute;
+  top: 10.25%;
+  left: 0.25%;
+  right: 75%;
+  bottom: 0.25%;
+}
+
+.menuClosed{
+  background-color: #21252B;
+  border-radius: 10px;
+  position: absolute;
+  top: 10.25%;
+  left: 0.25%;
+  right: 97%;
+  bottom: 0.25%;
+}
+
+.menuDimension{
+  background-color: #21252B;
+  position: absolute;
+  top:6.7%;
+  left:3%;
+  right:3%;
+  bottom: 3%;
+}
+
+.menuIcon{
+  position: absolute;
+  top: 1%;
+  right: 1.5%;
+  color: white;
+  background-color: #353c44;
+  border-style: none;
+  border-radius: 10px;
+}
+
+
+.bodyExpanded{
+  background-color: rgb(187, 185, 185);
+  color: navy;
+  font-family: 'Times New Roman', Times, serif;
+  border-radius: 10px;
+  position: absolute;
+  top: 10.25%;
+  left: 25.25%;
+  right: 0.25%;
+  bottom: 0.25%;
+}
+
+.bodyNotExpanded{
+  background-color: rgb(187, 185, 185);
+  color: navy;
+  font-family: 'Times New Roman', Times, serif;
+  border-radius: 10px;
+  position: absolute;
+  top: 10.25%;
+  left: 3.25%;
+  right: 0.25%;
+  bottom: 0.25%;
+}
+
+.header{
+  background-color:  rgb(9, 26, 43);
+  color: white;
+  border-radius: 10px;
+  position: absolute;
+  top: 0.25%;
+  left: 0.25%;
+  right: 0.25%;
+  bottom: 90%;
+
+}
+
+.title{
+  position: absolute;
+  top: 10%; bottom: 0; right: 1%;
+  margin: auto;
+}
+
+.div-Main {
+  background-color: white;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  min-width: 1360px;
+  min-height: 600px;
+}
+
