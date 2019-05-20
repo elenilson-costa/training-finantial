@@ -1,0 +1,43 @@
+.FormFieldsContainer{
+  background: rgb(119, 119, 129);
+  position: fixed;
+  top:23.7%;
+  bottom: 5%;
+  left: 25.3%;
+  right: 0.2%;
+  border-radius: 10px;
+
+}
+
+.formTitle{
+    color: white;
+    position: absolute;
+    top: 10%; bottom: 0; left: 1%;
+    margin: auto;
+    font-family: "Times New Roman", Times, serif;
+  }
+
+.labelField{
+  position: absolute;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+input{
+  color: navy;
+}
+
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.divTitle{
+    background-color: rgb(48, 75, 102);
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 91%;
+    border-radius: 10px;
+}
