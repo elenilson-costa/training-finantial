@@ -1,29 +1,32 @@
 .FormFieldsContainer{
-  background: rgb(119, 119, 129);
-  position: fixed;
-  top:23.7%;
+  background: rgb(48, 75, 102);
+  position: absolute;
+  top:15%;
   bottom: 5%;
-  left: 25.3%;
-  right: 0.2%;
+  left: 0%;
+  right: 0%;
   border-radius: 10px;
-
 }
 
-.formTitle{
-    color: white;
-    position: absolute;
-    top: 10%; bottom: 0; left: 1%;
-    margin: auto;
-    font-family: "Times New Roman", Times, serif;
-  }
+.outsideContainer{
+  background: rgb(48, 75, 102);
+  position: absolute;
+  top:6%;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+  border-radius: 10px;
+}
 
 .labelField{
+  color: rgb(187, 184, 184);
   position: absolute;
   font-family: 'Times New Roman', Times, serif;
 }
 
 input{
-  color: navy;
+  color: rgb(48, 75, 102);
+  background-color: rgb(224, 222, 222);
 }
 
 input::-webkit-inner-spin-button {
@@ -32,8 +35,17 @@ input::-webkit-inner-spin-button {
   margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
+
+.formTitle{
+  color: white;
+  position: absolute;
+  top: 20%; bottom: 0;
+  margin: auto;
+  font-family: "Times New Roman", Times, serif;
+}
+
 .divTitle{
-    background-color: rgb(48, 75, 102);
+    background-color: rgb(23, 45, 70);
     position: absolute;
     left: 0%;
     right: 0%;

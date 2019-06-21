@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom'
 import '../FormDefault.css';
 import './style.css';
 import ActionBar from '../libs/ActionBar';
@@ -12,7 +11,7 @@ class Customers extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            listCustomers: {},
+            listCustomers: [],
             indexCustomer: 0,
             customer: this.cleanCustomer(),
             customerConfig:{arrayList: "listCustomers",
@@ -21,7 +20,8 @@ class Customers extends React.Component {
                             objectClean: ()=>this.cleanCustomer(),
                             readOnly: false,
                             changed: false,
-                            /*afterInsertMode: ()=>this.afterCustomerInsertMode()*/
+                            insertData: ()=>this.insertData(),
+                            updateData: ()=>this.updateData()
                            }
 
                        };
@@ -59,13 +59,11 @@ class Customers extends React.Component {
     }
 
     closeComponent() {
-        console.log("Destruir componente");
-        var container = this.ReactDOM.findDOMNode(this).parentNode;
-        this.ReactDOM.unmountComponentAtNode(container);
+        this.props.closeForm("customer");
     }
 
     async insertData(){
-        axios.post('http://localhost:5000/ConsoleApiPost', {
+        const result = axios.post('http://localhost:5000/ConsoleApiPost', {
             params: {
                 call: "InsertCustomer",
             },
@@ -75,14 +73,40 @@ class Customers extends React.Component {
 
             const result = await res.data;
             if (result.sequence === -1){
-                console.log("Insert fall: "+result.error);
+                return "Insert server return fall: "+result.error;
             }
             const customer = await this.state.customer;
-            console.log(customer);
             customer.cd_customer.value = result.sequence;
-            this.setState({customer: customer});
+            await this.setState({customer: customer});
+            
+            
+            return "OK";
 
         });
+
+        return result;
+
+    }
+
+    async updateData(){
+        const result = axios.put('http://localhost:5000/ConsoleApiPut', {
+            params: {
+                call: "UpdateCustomer",
+            },
+            customer: lib.toDataObject(this.state.customer)
+        })
+        .then(async res =>{
+
+            const result = await res.data;
+            if (result.code === "ERROR"){
+                return "Update server return fall: "+result.error;
+            }
+
+            return "OK";
+
+        });
+
+        return result;
 
     }
 
@@ -131,10 +155,10 @@ class Customers extends React.Component {
 
     render(){
         return(
-            <div>
+            <div className="outsideContainer">
                 <div className="divTitle" >
                     <div sytle={{top:"0"}}>
-                        <h3 className="formTitle" >Customers Registers</h3>
+                        <h3 className="formTitle" style={{left:"400px"}}>Customers Registers</h3>
                     </div>
                 </div>
 
@@ -145,7 +169,6 @@ class Customers extends React.Component {
                            blockLib={this.customerBlock}
                            renderValues={()=>{this.renderValues()}} 
                            executeQuery={()=>this.executeQuery()}
-                           insertData={()=>this.insertData()}
                            closeComponent={()=>this.closeComponent()}
                            />
 

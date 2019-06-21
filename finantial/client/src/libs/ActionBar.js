@@ -179,7 +179,7 @@ class ActionBar extends React.Component{
         }
     }
 
-    clickCheck(){
+    async clickCheck(){
         if (this.state.formMode === "search"){
             try{
                 this.props.executeQuery();
@@ -190,7 +190,23 @@ class ActionBar extends React.Component{
             
         }else if (this.state.formMode === "insert"){
             try{
-                this.props.insertData();
+                //const result = await this.props.insertData();
+                const result = await this.props.blockLib.getObjectConfig(this.props.callerState).insertData();
+                if (result === "OK"){
+                    console.log("this.setFormMode"); 
+                    
+                    this.props.stateController(
+                        this.props.blockLib.setObjectList(
+                            this.props.blockLib.getObjectList(this.props.callerState).push(
+                                Object.assign({}, this.props.callerState[this.props.blockLib.getObjectName()])
+                            )
+                        )
+                    );
+
+                    this.setFormMode("noempty");
+                }else{
+                    console.log(result);    
+                }
             }catch(exception){
                 console.log(exception);
             }
@@ -250,95 +266,95 @@ class ActionBar extends React.Component{
         return(
             <div className="actionbar">
                 <button className="buttons" 
-                        style={{left:"15px", top: "2px", color: this.state.checkButtonStatus === "disabled" ? this.state.styleDisabledColor : ""  }}
+                        style={{left:"15px", top: "1.60px", color: this.state.checkButtonStatus === "disabled" ? this.state.styleDisabledColor : ""  }}
                         disabled={this.state.checkButtonStatus==="disabled"}
                         title="Confirm"
                         onClick={()=>this.clickCheck()}>
                         <CheckCircle/>
                 </button>
 
-                <button className="buttons" style={{left:"60px", top: "2px", color: this.state.cancelButtonStatus === "disabled" ? this.state.styleDisabledColor : ""  }}
+                <button className="buttons" style={{left:"60px", top: "1.60px", color: this.state.cancelButtonStatus === "disabled" ? this.state.styleDisabledColor : ""  }}
                 disabled={this.state.cancelButtonStatus==="disabled"}
                 title="Cancel"
                 onClick={(x)=>this.clickCancel()}>
                     <Cancel/>
                 </button>
 
-                <button className="buttons" style={{left:"150px", top: "2px", color: this.state.searchButtonStatus === "disabled" ? this.state.styleDisabledColor : ""  }}
+                <button className="buttons" style={{left:"150px", top: "1.60px", color: this.state.searchButtonStatus === "disabled" ? this.state.styleDisabledColor : ""  }}
                         disabled={this.state.searchButtonStatus==="disabled"}
                         title="Search"
                         onClick={(x)=>(this.setFormMode("search"))}>
                     <Search/>
                 </button>
 
-                <button className="buttons" style={{left:"195px", top: "2px", color: this.state.addButtonStatus === "disabled" ? this.state.styleDisabledColor : ""  }}
+                <button className="buttons" style={{left:"195px", top: "1.60px", color: this.state.addButtonStatus === "disabled" ? this.state.styleDisabledColor : ""  }}
                 disabled={this.state.addButtonStatus==="disabled"}
                 title="Add"
                 onClick={(x)=>(this.setFormMode("insert"))}>
                     <AddCircle/>
                 </button>
 
-                <button className="buttons" style={{left:"240px", top: "2px", color: this.state.editButtonStatus === "disabled" ? this.state.styleDisabledColor : ""  }}
+                <button className="buttons" style={{left:"240px", top: "1.60px", color: this.state.editButtonStatus === "disabled" ? this.state.styleDisabledColor : ""  }}
                 disabled={this.state.editButtonStatus==="disabled"}
                 title="Edit"
                 onClick={(x)=>(this.clickEdit())}>
                     <Edit/>
                 </button>
 
-                <button className="buttons" style={{left:"285px", top: "2px", color: this.state.deleteButtonStatus === "disabled" ? this.state.styleDisabledColor : ""  }}
+                <button className="buttons" style={{left:"285px", top: "1.60px", color: this.state.deleteButtonStatus === "disabled" ? this.state.styleDisabledColor : ""  }}
                 disabled={this.state.deleteButtonStatus==="disabled"}
                 title="Delete">
                     <DeleteForever/>
                 </button>
 
-                <button className="buttons" style={{left:"330px", top: "2px", color: this.state.refreshButtonStatus === "disabled" ? this.state.styleDisabledColor : ""  }}
+                <button className="buttons" style={{left:"330px", top: "1.60px", color: this.state.refreshButtonStatus === "disabled" ? this.state.styleDisabledColor : ""  }}
                 disabled={this.state.refreshButtonStatus==="disabled"}
                 title="Refresh"
                 onClick={(x)=>(this.setFormMode("refresh"))}>
                     <Refresh/>
                 </button>
 
-                <button className="buttons" style={{left:"420px", top: "2px", color: this.state.firstButtonStatus === "disabled" ? this.state.styleDisabledColor : ""  }}
+                <button className="buttons" style={{left:"420px", top: "1.60px", color: this.state.firstButtonStatus === "disabled" ? this.state.styleDisabledColor : ""  }}
                 disabled={this.state.firstButtonStatus==="disabled"}
                 title="First Record"
                 onClick={()=>this.clickFirst()}>
                     <FirstPage/>
                 </button>
 
-                <button className="buttons" style={{left:"465px", top: "2px", color: this.state.previousButtonStatus === "disabled" ? this.state.styleDisabledColor : ""  }}
+                <button className="buttons" style={{left:"465px", top: "1.60px", color: this.state.previousButtonStatus === "disabled" ? this.state.styleDisabledColor : ""  }}
                 disabled={this.state.previousButtonStatus==="disabled"}
                 title="Previous Record"
                 onClick={()=>this.clickPrevious()}>
                     <ChevronLeft/>
                 </button>
 
-                <button className="buttons" style={{left:"510px", top: "2px", color: this.state.nextButtonStatus === "disabled" ? this.state.styleDisabledColor : ""  }}
+                <button className="buttons" style={{left:"510px", top: "1.60px", color: this.state.nextButtonStatus === "disabled" ? this.state.styleDisabledColor : ""  }}
                 disabled={this.state.nextButtonStatus==="disabled"}
                 title="Next Record"
                 onClick={()=>this.clickNext()}>
                     <ChevronRight/>
                 </button>
 
-                <button className="buttons" style={{left:"555px", top: "2px", color: this.state.lastButtonStatus === "disabled" ? this.state.styleDisabledColor : ""  }}
+                <button className="buttons" style={{left:"555px", top: "1.60px", color: this.state.lastButtonStatus === "disabled" ? this.state.styleDisabledColor : ""  }}
                 disabled={this.state.lastButtonStatus==="disabled"}
                 title="Last Record"
                 onClick={()=>this.clickLast()}>
                     <LastPage/>
                 </button>
 
-                <button className="buttons" style={{left:"645px", top: "2px", color: this.state.tableButtonStatus === "disabled" ? this.state.styleDisabledColor : ""  }}
+                <button className="buttons" style={{left:"645px", top: "1.60px", color: this.state.tableButtonStatus === "disabled" ? this.state.styleDisabledColor : ""  }}
                 disabled={this.state.tableButtonStatus==="disabled"}
                 title="Toggle Form/Table">
                     <List/>
                 </button>
 
-                <button className="buttons" style={{left:"690px", top: "2px", color: this.state.printButtonStatus === "disabled" ? this.state.styleDisabledColor : ""  }}
+                <button className="buttons" style={{left:"690px", top: "1.60px", color: this.state.printButtonStatus === "disabled" ? this.state.styleDisabledColor : ""  }}
                 disabled={this.state.printButtonStatus==="disabled"}
                 title="Print">
                     <Print/>
                 </button>
 
-                <button className="buttons" style={{left:"960px", top: "2px"}} title="Close Form"
+                <button className="buttons" style={{left:"960px", top: "1.60px"}} title="Close Form"
                 onClick={()=>this.clickClose()}>
                     <Close/>
                 </button>

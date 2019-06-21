@@ -5,7 +5,7 @@ import {decorators, theme} from 'react-treebeard';
 // theme.tree.base.backgroundColor = props.theme.palette.background.paper;
 theme.tree.base.backgroundColor = '#21252B';
 theme.tree.base.color = 'black';
-theme.tree.node.activeLink.background = 'lightgrey';
+theme.tree.node.activeLink.background = '#21252B';
 theme.tree.node.toggle.arrow.fill = '#428BCA';
 theme.tree.node.toggle.width = 10;
 theme.tree.node.toggle.height = 10;

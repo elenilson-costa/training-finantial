@@ -111,6 +111,13 @@ export default class BlockLib {
         return callerState[listName];
     }
 
+    setObjectList(callerState, value){
+        const listName = this.getObjectListName(callerState);
+        callerState[listName] = value;
+        return callerState;
+    }
+
+
     getObjectName(){
         return this.objectName;
     }

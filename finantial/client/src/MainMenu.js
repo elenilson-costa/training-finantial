@@ -30,7 +30,7 @@ class MainMenu extends Component {
                     <MenuIcon/>
                 </button>
                 <div className="menuDimension">
-                    <MenuTreeComponent/>
+                    <MenuTreeComponent showForm={(formName)=>this.props.showForm(formName)}/>
                 </div>
             </div>
         );
